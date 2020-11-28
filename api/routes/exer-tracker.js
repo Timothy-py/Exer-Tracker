@@ -1,17 +1,23 @@
 const router = require('express').Router();
 
 const userController = require('../controllers/user')
+const exerciseController = require('../controllers/exercise')
 
 
 // USER ROUTES
 
-// GET ALL USERS
+// get all users
 router.get('/users', userController.getAllUsers);
+// add a user
+router.post('/user/add', userController.addNewUser);
 
-// ADD A USER
-router.post('/add', userController.addNewUser);
 
+// EXERCISE ROUTES
 
+// get all exercises
+router.get('/exercises', exerciseController.getAllExercises);
+// add a new exercise
+router.post('/exercise/add')
 
 
 

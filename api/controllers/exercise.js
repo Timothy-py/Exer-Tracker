@@ -1,8 +1,12 @@
-const {Exercise} = require('../models/exercise');
+const Exercise = require('../models/exercise');
 
 exports.getAllExercises = (req, res) => {
     Exercise.find()
-    .then(exercises => res.json(exercises))
+    .then(exercises => res.json({
+        status: true,
+        message: 'All Exercises Retrieved Successfully',
+        data: exercises
+    }))
     .catch(err => res.status(400).json('Error: '+ err));
 };
 

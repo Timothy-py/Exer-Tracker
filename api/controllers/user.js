@@ -1,12 +1,15 @@
-const models = require('../models');
-const { User } = require('../models/user');
+const User = require('../models/user');
 
 exports.getAllUsers = (req, res, next)=>{
     User.find()
     .then(users=>{
-        res.json(users)
+        res.json({
+            status: true,
+            message: "All Users Retrieved Successfully",
+            data: users,
+        })
     })
-    .cath(err=>{
+    .catch(err=>{
         res.status(400).json('Error: ' + err)
     })
 };
