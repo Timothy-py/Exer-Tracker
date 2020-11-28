@@ -17,9 +17,10 @@ exports.getAllUsers = (req, res, next)=>{
 
 exports.addNewUser = (req, res, next)=>{
     const username = req.body.username;
+    console.log(username)
     const newUser = new User({username});
 
     newUser.save()
     .then(() => res.json('User added'))
-    .cath(err => res.status(400).json('Error: ' + err));
+    .catch(err => res.status(400).json('Error: ' + err));
 }

@@ -27,3 +27,36 @@ exports.addNewExercise = (req, res) => {
     .then(() => res.json('Exercise added!'))
     .catch(err => res.status(400).json('Error: ' + err))
 };
+
+
+exports.getAnExercise = (req, res) => {
+    Exercise.findById(req.params.id)
+    .then(exercise => res.json({
+        status: true,
+        message: 'Exercise Retrieved Successfully',
+        data: exercise
+    }))
+    .catch(err => res.status(400).json('Error: ' + err))
+};
+
+
+exports.deleteExercise = (req, res) => {
+    Exercise.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Exercise Deleted Successfully'))
+    .catch(err => res.status(400).json('Error: '+ err))
+};
+
+
+exports.updateExercise = (req, res) => {
+    Exercise.findById(req.params.id)
+    .then(exercise => {
+        exercise.username = req.body.username;
+        exercise.description = req.body.description;
+        exercise.duration = Number(req.body.duration);
+        exercise.date = Date.parse(req.body.date);
+
+        exercise.save()
+        .then(() => res.json('Exercise Updated Successfully'))
+        .catch(err => res.status(400).json('Error: ' + err))
+    })
+};

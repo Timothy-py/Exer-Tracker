@@ -17,11 +17,7 @@ router.post('/user/add', userController.addNewUser);
 // get all exercises
 router.get('/exercises', exerciseController.getAllExercises);
 // add a new exercise
-router.post('/exercise/add')
-
-
-
-
+router.post('/exercise/add', exerciseController.addNewExercise);
 
 
 module.exports = router;
