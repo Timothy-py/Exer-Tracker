@@ -3,11 +3,18 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+// require routes
+const exerciseRouter = require('./routes/exercise');
+const userRouter = require('./routes/user');
+
 const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use('/exercises', exerciseRouter);
+app.use('/users', userRouter);
 
 // setup mongodb connection: connecting to mongo atlas
 const uri = process.env.ATLAS_URI;
