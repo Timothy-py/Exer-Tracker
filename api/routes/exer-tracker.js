@@ -18,6 +18,11 @@ router.post('/user/add', userController.addNewUser);
 router.get('/exercises', exerciseController.getAllExercises);
 // add a new exercise
 router.post('/exercise/add', exerciseController.addNewExercise);
-
+// get an exercise
+router.get('/exercise/:id', exerciseController.getAnExercise);
+// delete an exercise
+router.delete('/exercise/:id', exerciseController.deleteExercise);
+// update an exercise
+router.post('/exercise/update/:id', exerciseController.updateExercise);
 
 module.exports = router;
