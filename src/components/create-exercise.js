@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import axios from "axios"
 
 
 class CreateExercise extends Component{
@@ -21,10 +22,24 @@ class CreateExercise extends Component{
     }
 
     componentDidMount(){
-        this.setState({
-            users: ['test user'],
-            username: 'test user'
+        axios.get('http://localhost:5000/exer-tracker/users')
+        .then(result => {
+            let user_data = []
+            if (result.data.data.length > 0){   
+                result.data.data.map(user => {
+                   user_data.push(user.username)
+                })
+
+                this.setState({
+                    users: user_data,
+                    username: user_data[0]
+                })
+                console.log(user_data)
+            } else{
+                console.log("No User data available")
+            }
         })
+        .catch(err => console.log(`Unable to get user data: ${err}`))
     }
 
     changeHandler(event){
@@ -43,8 +58,11 @@ class CreateExercise extends Component{
             date: this.state.date
         }
 
-        console.log("im here bro")
         console.log(exercise)
+
+        axios.post('http://localhost:5000/exer-tracker/exercise/add', exercise)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(`Unable to create exercise: ${err}`))
 
         window.location = '/';
     }

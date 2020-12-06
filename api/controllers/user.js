@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-exports.getAllUsers = (req, res, next)=>{
+exports.getAllUsers = (req, res)=>{
     User.find()
     .then(users=>{
         res.json({
