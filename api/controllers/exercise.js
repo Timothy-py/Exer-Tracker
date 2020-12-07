@@ -1,5 +1,5 @@
 const Exercise = require('../models/exercise');
-
+ 
 exports.getAllExercises = (req, res) => {
     Exercise.find()
     .then(exercises => res.json({
