@@ -12,7 +12,7 @@ const Exercise = (props) => {
             <td>{props.exercise.date.substring(0,10)}</td>
             <td>
                 <Link to={`/edit/${props.exercise._id}`} >edit</Link> |
-                <a href="#" onClick={() => {props.deleteExercise(props.exercise_id)}} >delete</a>
+                <a href="#" onClick={() => {props.deleteExercise(props.exercise._id)}} >delete</a>
             </td>
         </tr>
     )
@@ -53,7 +53,7 @@ class ExercisesList extends Component{
         .then(response => {console.log(response.data)})
         .catch(error => {console.log(`Error deleting exercise: ${error}`)})
 
-        const newExerciseList = this.state.exercise.filter(exercise => {return exercise._id !== id})
+        const newExerciseList = this.state.exercises.filter(exercise => {return exercise._id !== id})
         this.setState({
             exercises: newExerciseList
         })
