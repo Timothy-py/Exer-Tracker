@@ -34,7 +34,7 @@ class ExercisesList extends Component{
 
     // api request to get all exercises from the server
     componentDidMount(){
-        axios.get("http://localhost:5000/exer-tracker/exercises")
+        axios.get("https://exer-tracker-api.herokuapp.com/exer-tracker/exercises")
         .then(response => {
             this.setState({
                 exercises: response.data.data
@@ -49,7 +49,7 @@ class ExercisesList extends Component{
     // method for deleting an exercise from the database
     // and also automatically removing the deleted database from the UI through id filtering
     deleteExercise(id){
-        axios.delete(`http://localhost:5000/exer-tracker/exercise/${id}`)
+        axios.delete(`https://exer-tracker-api.herokuapp.com/exer-tracker/exercise/${id}`)
         .then(response => {console.log(response.data)})
         .catch(error => {console.log(`Error deleting exercise: ${error}`)})
 

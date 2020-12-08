@@ -22,7 +22,7 @@ class EditExercise extends Component{
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:5000/exer-tracker/exercise/${this.props.match.params.id}`)
+        axios.get(`https://exer-tracker-api.herokuapp.com/exer-tracker/exercise/${this.props.match.params.id}`)
         .then(response => {
             this.setState({
                 username: response.data.data.username,
@@ -35,7 +35,7 @@ class EditExercise extends Component{
         .catch(err => {console.log(err)})
 
 
-        axios.get('http://localhost:5000/exer-tracker/users')
+        axios.get('https://exer-tracker-api.herokuapp.com/exer-tracker/users')
         .then(result => {
             let user_data = []
             if (result.data.data.length > 0){   
@@ -71,7 +71,7 @@ class EditExercise extends Component{
 
         console.log(exercise)
 
-        axios.post(`http://localhost:5000/exer-tracker/exercise/update/${this.props.match.params.id}`, exercise)
+        axios.post(`https://exer-tracker-api.herokuapp.com/exer-tracker/exercise/update/${this.props.match.params.id}`, exercise)
         .then(res => console.log(res.data))
         .catch(err => console.log(`Unable to edit exercise: ${err}`))
 
