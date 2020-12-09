@@ -40,7 +40,7 @@ class EditExercise extends Component{
             let user_data = []
             if (result.data.data.length > 0){   
                 result.data.data.map(user => {
-                   user_data.push(user.username)
+                   return user_data.push(user.username)
                 })
 
                 this.setState({
