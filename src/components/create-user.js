@@ -36,6 +36,8 @@ class CreateUser extends Component{
         this.setState({
             username: ""
         })
+
+        alert("User Added Successfully")
     }
 
     render() {

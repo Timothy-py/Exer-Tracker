@@ -60,8 +60,9 @@ class EditExercise extends Component{
         })
     }
 
-    onSubmit(event){
+    async onSubmit(event){
         event.preventDefault();
+
         const exercise = {
             username: this.state.username,
             description: this.state.description,
@@ -69,9 +70,7 @@ class EditExercise extends Component{
             date: this.state.date
         }
 
-        console.log(exercise)
-
-        axios.post(`https://exer-tracker-api.herokuapp.com/exer-tracker/exercise/update/${this.props.match.params.id}`, exercise)
+        await axios.post(`https://exer-tracker-api.herokuapp.com/exer-tracker/exercise/update/${this.props.match.params.id}`, exercise)
         .then(res => console.log(res.data))
         .catch(err => console.log(`Unable to edit exercise: ${err}`))
 

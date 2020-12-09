@@ -50,8 +50,15 @@ class CreateExercise extends Component{
         })
     }
 
-    onSubmit(event){
+    dateChangeHandler(date){
+        this.setState({
+            date: date
+        })
+    }
+
+    async onSubmit(event){
         event.preventDefault();
+
         const exercise = {
             username: this.state.username,
             description: this.state.description,
@@ -61,17 +68,11 @@ class CreateExercise extends Component{
 
         console.log(exercise)
 
-        axios.post('https://exer-tracker-api.herokuapp.com/exer-tracker/exercise/add', exercise)
+        await axios.post('https://exer-tracker-api.herokuapp.com/exer-tracker/exercise/add', exercise)
         .then(res => console.log(res.data))
         .catch(err => console.log(`Unable to create exercise: ${err}`))
 
         window.location = '/';
-    }
-
-    dateChangeHandler(date){
-        this.setState({
-            date: date
-        })
     }
 
     render() {
